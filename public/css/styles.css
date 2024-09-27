@@ -1,0 +1,164 @@
+:root{
+    --blue: #0066cc;
+    --yellow: #ffcc00;
+    --green: #28a745;
+    --red: #dc3545;
+    --orange: #fd7e14;
+    --light_gray: #f5f5f5;
+    --dark_gray: #333333;
+    --secondary_text: #666666;
+    --muted_text: #999999;
+}
+
+.header{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    background-color: var(--blue);
+    padding: 16px;
+    color: #ffffff;
+    align-items: center;
+}
+
+body{
+    margin: 0px;
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    min-height: 100vh;
+    font-family: "Roboto", sans-serif;
+    color: var(--dark_gray);
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+h1 {
+    font-size: 36px;
+}
+
+h2 {
+    font-size: 30px;
+}
+
+h3{
+    font-size: 24px;
+}
+
+h1, h2, h3{
+    font-weight: bold;
+}
+
+.primary-button{
+    background-color: var(--blue);
+    color: #ffffff;
+    border-radius: 5px;
+    padding: 10px 20px;
+}
+
+.primary-button:hover{
+    background-color: #005bb5;
+    cursor: pointer;
+}
+
+.secondary-button{
+    background-color: #ffffff;
+    border: 2px solid var(--blue);
+    color: var(--blue);
+    border-radius: 5px;
+    padding: 10px 20px;
+}
+
+.secondary-button:hover{
+    background-color: #e6f2ff;
+    cursor: pointer;
+}
+
+
+.body-content{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    min-height: 100%;
+    padding: 32px;
+}
+
+.events-table{
+    margin: auto;
+    margin-top: 16px;
+    min-width: 66%;
+    border: 1px solid #cccccc;
+    border-collapse: collapse;
+}
+
+.events-table th, .events-table td{
+    border: 1px solid #cccccc;
+    padding: 12px 15px;
+}
+
+.events-table th{
+    background-color: var(--light_gray);
+    font-weight: bold;
+    color: var(--dark_gray);
+}
+
+.events-table td{
+    font-size: 16px;
+}
+
+.events-table td:hover{
+    background-color: #f0f8ff;
+}
+
+.event-edit-form{
+    margin: auto;
+    margin-top: 0px;
+    min-width: 50%;
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    font-size: 14px;
+    background-color: var(--yellow);
+}
+
+.event-edit-form div{
+    margin-bottom: 16px;
+}
+
+label {
+    font-size: 14px;
+    font-weight: bold;
+    color: var(--dark_gray);
+}
+
+input, textarea{
+    height: 40px;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    padding: 8px 12px;
+    font-size: 16px;
+    flex-grow: 1;
+}
+
+input:focus, textarea:focus{
+    border-color: var(--blue);
+    outline: none;
+    box-shadow: 0px 0px 5px rgba(0, 102, 204, 0.5);
+}
+
+
+.footer{
+    padding: 8px;
+    background-color: var(--blue);
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    margin-bottom: 0px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: #ffffff;
+}
+
+button {
+    font-weight: bold;
+}
