@@ -80,6 +80,8 @@ app.get('/create_event', async (req, res) => {
     }
 });
 
+
+//Handles post request from form to create a new event
 app.post('/create', async (req, res) => {
     console.log(req.body);
     console.log(req.body.event_name)
@@ -97,10 +99,7 @@ app.post('/create', async (req, res) => {
 
     try{
         await newEvent.save();
-        const events = await Event.find({});
-        res.render('index', {
-            eventsList: events
-        });
+        console.log('New Event created successfully!')
     } catch (err){
         res.status(500).send('Error saving item: ' + err);
     }
