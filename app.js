@@ -43,8 +43,8 @@ const jobSchema = new mongoose.Schema({
 //Schema for events
 const eventSchema = new mongoose.Schema({
     event_name: String,
-    event_start_date: String,
-    event_end_date: String,
+    event_start_date: Date,
+    event_end_date: Date,
     event_start_time: String,
     event_end_time: String,
     event_location: String,
@@ -59,10 +59,12 @@ const Event = mongoose.model('Event', eventSchema)
 app.get('/', async (req, res) => {
     try {
         const events = await Event.find({});
+        console.log('Event successfully added!')
+        console.log(events);
         res.render('index', {
             eventsList: events
         });
-        console.log(events);
+        
     } catch (err) {
         console.error(err);
         res.status(500).send('Internal Server Error');
@@ -79,6 +81,9 @@ app.get('/create_event', async (req, res) => {
 });
 
 app.post('/create', async (req, res) => {
+    console.log(req.body);
+    console.log(req.body.event_name)
+
     const newEvent = new Event({
         event_name: req.body.event_name,
         event_start_date: req.body.event_start_date,
@@ -92,7 +97,10 @@ app.post('/create', async (req, res) => {
 
     try{
         await newEvent.save();
-        res.send('Event successfully added!');
+        const events = await Event.find({});
+        res.render('index', {
+            eventsList: events
+        });
     } catch (err){
         res.status(500).send('Error saving item: ' + err);
     }
