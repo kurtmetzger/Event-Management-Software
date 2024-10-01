@@ -18,43 +18,47 @@
     </div>
     <div class="body-content">
         <h2 style="text-align: center;">Create Event</h2>
-        <form action="" class="event-edit-form">
+
+        <!-- Create event form-->
+        <form action="/create" method="POST" class="event-edit-form">
             <div>
-                <label for="event-name">Event Name:</label>
-                <textarea id="event-name" placeholder="Event Name"></textarea>
+                <label for="event_name">Event Name:</label>
+                <textarea id="event_name" placeholder="Event Name"></textarea>
             </div>
             <div style="display: flex; flex-direction:row;">
                 <div style="display: flex; flex-direction:row; flex-grow: 1;">
-                    <label for="event-start-date">Event Start Date:</label>
-                    <input id = "event-start-date" type="date">
+                    <label for="event_start_date">Event Start Date:</label>
+                    <input id = "event_start_date" type="date">
                 </div>
                 <div style="display: flex; flex-direction:row; flex-grow: 1;">
-                    <label for="event-end-date">Event End Date:</label>
-                    <input id = "event-end-date" type="date">
+                    <label for="event_end_date">Event End Date:</label>
+                    <input id = "event_end_date" type="date">
                 </div>
             </div>
             <div style="display: flex; flex-direction:row;">
                 <div style="display: flex; flex-direction:row; flex-grow: 1;">
-                    <label for = "event-start-time">Event Start Time:</label>
-                    <input id = "event-start-time" type="time">
+                    <label for = "event_start_time">Event Start Time:</label>
+                    <input id = "event_start_time" type="time">
                 </div>
                 <div style="display: flex; flex-direction:row; flex-grow: 1;">
-                    <label for = "event-end-time">Event End Time:</label>
-                    <input id = "event-end-time" type="time">
+                    <label for = "event_end_time">Event End Time:</label>
+                    <input id = "event_end_time" type="time">
                 </div>  
             </div>
             <div>
-                <label for="event-location">Event Location:</label>
-                <textarea id="event-location" placeholder="Location"></textarea>
+                <label for="event_location">Event Location:</label>
+                <textarea id="event_location" placeholder="Location"></textarea>
             </div>
             <div>
-                <label for="organization-name">Organization Name:</label>
-                <textarea id="organization-name" placeholder="Organization Name"></textarea>
+                <label for="organization_name">Organization Name:</label>
+                <textarea id="organization_name" placeholder="Organization Name"></textarea>
             </div>
             
             <button type="submit" class="secondary-button" style="max-width:max-content; align-self:center">Create</button>
         </form>
     </div>
+
+    <!--Footer-->
     <div class="footer">
         <div style="display: flex; flex-grow: 1">
             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16" style="margin: 8px;">
