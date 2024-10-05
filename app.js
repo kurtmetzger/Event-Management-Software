@@ -83,9 +83,6 @@ app.get('/create_event', async (req, res) => {
 
 //Handles post request from form to create a new event
 app.post('/create', async (req, res) => {
-    console.log(req.body);
-    console.log(req.body.event_name)
-
     const newEvent = new Event({
         event_name: req.body.event_name,
         event_start_date: req.body.event_start_date,
@@ -105,6 +102,17 @@ app.post('/create', async (req, res) => {
     }
 });
 
+app.post('/delete/:id', async (req, res) => {
+    try {
+        console.log(req.params.id.toString());
+        const eventId = req.params.id;
+        await Event.findByIdAndDelete(eventId);
+        res.redirect('/');
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Error deleting event');
+    }
+});
 
 
 //Prints out when server is running

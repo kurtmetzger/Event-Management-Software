@@ -39,7 +39,12 @@
                     <td><%= event.event_start_date %></td>
                     <td><%= event.event_start_time %></td>
                     <td><%= event.event_location %></td>
-                    <td><a><button class="secondary-button">Edit</button></a><a><button class="secondary-button">Delete</button></a></td>
+                    <td>
+                        <a><button class="secondary-button">Edit</button></a>
+                        <form action="/delete/<%= event._id %>" method="POST" style="display:inline;">
+                            <button class="secondary-button" type="submit">Delete</button>
+                        </form>
+                    </td>
                 </tr>
             <%})%>
         </table>
