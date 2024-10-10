@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <title>Edit Event</title>
+</head>
+<body>
+    <div class="header">
+        <a href="/" style="text-decoration: none; color: #ffffff !important;">
+            <h1>Event Management Software</h1>
+        </a>
+        <div class="search-box">
+            <input type="search" id="search" placeholder="Search">
+        </div>
+    </div>
+
+    <div class="body-content">
+        <h2 style="text-align: center;">Edit Event</h2>
+
+        <!-- Edit event form -->
+        <form action="/edit/<%= event._id %>" method="POST" class="event-edit-form">
+            <div>
+                <label for="event_name">Event Name:</label>
+                <textarea id="event_name" name="event_name" placeholder="Event Name" required><%= event.event_name %></textarea>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="event_start_date">Event Start Date:</label>
+                    <input id="event_start_date" name="event_start_date" type="date" value="<%= new Date(event.event_start_date).toISOString().split('T')[0] %>" required>
+                </div>
+                <div class="form-group">
+                    <label for="event_end_date">Event End Date:</label>
+                    <input id="event_end_date" name="event_end_date" type="date" value="<%= new Date(event.event_end_date).toISOString().split('T')[0] %>" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="event_start_time">Event Start Time:</label>
+                    <input id="event_start_time" name="event_start_time" type="time" value="<%= event.event_start_time %>" required>
+                </div>
+                <div class="form-group">
+                    <label for="event_end_time">Event End Time:</label>
+                    <input id="event_end_time" name="event_end_time" type="time" value="<%= event.event_end_time %>" required>
+                </div>
+            </div>
+            <div>
+                <label for="event_location">Event Location:</label>
+                <textarea id="event_location" name="event_location" placeholder="Location" required><%= event.event_location %></textarea>
+            </div>
+            <div>
+                <label for="organization_name">Organization Name:</label>
+                <textarea id="organization_name" name="organization_name" placeholder="Organization Name" required><%= event.event_organization_name %></textarea>
+            </div>
+
+            <button type="submit" class="secondary-button" style="max-width: max-content; align-self: center;">Update Event</button>
+        </form>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <div style="display: flex; flex-grow: 1;">
+            <!-- Add your footer content -->
+        </div>
+    </div>
+
+</body>
+</html>
