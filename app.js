@@ -5,6 +5,7 @@ const app = express();
 const ejs = require('ejs');
 const path = require('path');
 const bodyParser = require('body-parser');
+const { MongoClient, ServerApiVersion } = require('mongodb');
 
 app.set('view engine', 'ejs');
 app.use(express.static("public"));
@@ -14,11 +15,12 @@ const PORT = 3000;
 let viewsPath = path.join(__dirname, 'views');
 
 // Points to database on local machine
-const connectionStr = "mongodb://localhost:27017/EventDatabase";
+const connectionStr = "mongodb+srv://swdv650:swdv650@cluster0.2s0c6aw.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 
 // Middleware
 app.use(express.urlencoded({ extended: true }));
 
+// Create a MongoClient with a MongoClientOptions object to set the Stable API version
 async function connectToDatabase() {
     try {
         await mongoose.connect(connectionStr, { useNewUrlParser: true, useUnifiedTopology: true });
