@@ -27,7 +27,6 @@
             <tr>
                 <th>Job Title</th>
                 <th>Job Description</th>
-                <th>Taken</th>
                 <th>Assigned Staff Member</th>
                 <th>Actions</th>
             </tr>
@@ -36,7 +35,6 @@
                 <tr>
                     <td><%= job.job_title %></td>
                     <td><%= job.job_description %></td>
-                    <td><%= job.taken %></td>
                     <td><%= job.assigned_staff_member %></td>
                     <td>
                         <a href="/delete/<%= job.title %>"><button type="button">Delete Job</button></a>
@@ -50,9 +48,6 @@
                     </td>
                     <td>
                         <textarea id="job_description" name="job_description" placeholder="New Job Description" style="width: 90%"></textarea>
-                    </td>
-                    <td style="text-align: center;">
-                        <input id="job_taken" name="job_taken" type="checkbox" value="true" style="width: 20%;">
                     </td>
                     <td>
                         <textarea id="assigned_staff_member" name="assigned_staff_member" placeholder="New Job Assigned Staff Member" style="width: 90%"></textarea>

@@ -36,7 +36,6 @@ connectToDatabase();
 const jobSchema = new mongoose.Schema({
     job_title: String,
     job_description: String,
-    taken: Boolean,
     assigned_staff_member: String
 });
 
@@ -139,7 +138,6 @@ app.post('/create_job/:id', async (req, res) => {
         const newJob = new EventJob({
             job_title: req.body.job_title,
             job_description: req.body.job_description,
-            taken: req.body.job_taken === 'true',
             assigned_staff_member: req.body.assigned_staff_member
         })
 
