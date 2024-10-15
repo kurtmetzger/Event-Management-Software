@@ -52,7 +52,9 @@ const eventSchema = new mongoose.Schema({
     job_positions: [jobSchema]
 });
 
+
 const Event = mongoose.model('Event', eventSchema);
+const EventJob = mongoose.model('EventJob', jobSchema);
 
 // Gets the various pages from the views folder
 app.get('/', async (req, res) => {
@@ -131,6 +133,31 @@ app.post('/edit/:id', async (req, res) => {
     }
 });
 
+app.post('/create_job/:id', async (req, res) => {
+    try{
+        const eventID = req.params.id;
+        const newJob = new EventJob({
+            job_title: req.body.job_title,
+            job_description: req.body.job_description,
+            taken: req.body.job_taken === 'true',
+            assigned_staff_member: req.body.assigned_staff_member
+        })
+
+        await newJob.save();
+
+        await Event.findByIdAndUpdate(
+            eventID,
+            { $push: { job_positions: newJob } },
+        );
+
+        console.log('Job added to database successfully:', newJob);
+        res.redirect('/');
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Error creating new job')
+    }
+})
+
 
 app.get('/edit/:id', async (req, res) => {
     try {
@@ -140,6 +167,18 @@ app.get('/edit/:id', async (req, res) => {
     } catch (err) {
         console.error(err);
         res.status(500).send('Error loading event for editing');
+    }
+});
+
+app.get('/job_positions/:id', async (req, res) => {
+    try{
+        const eventID = req.params.id;
+        const event = await Event.findById(eventID);
+        const job_positions = event.job_positions
+        res.render('job_positions', {job_positions: job_positions, event: event});
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Error loading job positions')
     }
 });
 

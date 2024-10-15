@@ -44,6 +44,7 @@
                     <td><%= event.event_location %></td>
                     <td>
                         <a href="/edit/<%= event._id %>"><button type="button">Edit</button></a>
+                        <a href="/job_positions/<%= event._id %>"><button type="button">View Job Positions</button></a>
 
 
                         <form id="deleteForm-<%= event._id %>" action="/delete/<%= event._id %>" method="post" style="display:inline;">
