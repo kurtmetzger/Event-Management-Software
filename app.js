@@ -180,6 +180,21 @@ app.get('/job_positions/:id', async (req, res) => {
     }
 });
 
+app.post('/delete_job/:eventId/:jobId', async (req, res) => {
+    try {
+        const { eventId, jobId } = req.params;
+        await Event.findByIdAndUpdate(eventId, {
+            $pull: { job_positions: { _id: jobId } }
+        });
+        console.log(`Job with ID ${jobId} deleted successfully!`);
+        res.redirect(`/job_positions/${eventId}`);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Error deleting job');
+    }
+});
+
+
 
 // Prints out when server is running
 app.listen(PORT, () => {
