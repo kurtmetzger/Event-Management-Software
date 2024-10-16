@@ -19,8 +19,11 @@
         </div>
     </div>
 
+
     <div class="body-content">
         <h2 style="text-align: center;">Job Positions for <%= event.event_name %></h2>
+
+        <a href="/" class="secondary-button" style="max-width:max-content; align-self: flex-end;">Back to Home</a>
 
         <!-- Jobs Table -->
         <table class="events-table">
@@ -37,7 +40,10 @@
                     <td><%= job.job_description %></td>
                     <td><%= job.assigned_staff_member %></td>
                     <td>
-                        <a href="/delete/<%= job.title %>"><button type="button">Delete Job</button></a>
+                        <!-- Add a button that triggers the confirmation modal -->
+                        <form id="deleteJobForm-<%= job._id %>" action="/delete_job/<%= event._id %>/<%= job._id %>" method="POST" style="display:inline;">
+                            <button type="button" class="secondary-button" onclick="confirmDeleteJob('<%= job._id %>')">Delete Job</button>
+                        </form>
                     </td>
                 </tr>
             <% }) %>
@@ -58,8 +64,10 @@
                 </tr>
             </form>
         </table>
+        
 
     </div>
+
 
     <!-- Footer -->
     <div class="footer">
