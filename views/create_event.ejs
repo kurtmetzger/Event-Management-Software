@@ -23,35 +23,35 @@
         <form action="/create" method="POST" class="event-edit-form">
             <div>
                 <label for="event_name">Event Name:</label>
-                <textarea id="event_name" name="event_name" placeholder="Event Name"></textarea>
+                <textarea id="event_name" name="event_name" placeholder="Event Name" required></textarea>
             </div>
             <div style="display: flex; flex-direction:row;">
                 <div style="display: flex; flex-direction:row; flex-grow: 1;">
                     <label for="event_start_date">Event Start Date:</label>
-                    <input id = "event_start_date" name="event_start_date" type="date">
+                    <input id = "event_start_date" name="event_start_date" type="date" required>
                 </div>
                 <div style="display: flex; flex-direction:row; flex-grow: 1;">
                     <label for="event_end_date">Event End Date:</label>
-                    <input id = "event_end_date" name="event_end_date" type="date">
+                    <input id = "event_end_date" name="event_end_date" type="date" required>
                 </div>
             </div>
             <div style="display: flex; flex-direction:row;">
                 <div style="display: flex; flex-direction:row; flex-grow: 1;">
                     <label for = "event_start_time">Event Start Time:</label>
-                    <input id = "event_start_time"  name="event_start_time" type="time">
+                    <input id = "event_start_time"  name="event_start_time" type="time" required>
                 </div>
                 <div style="display: flex; flex-direction:row; flex-grow: 1;">
                     <label for = "event_end_time">Event End Time:</label>
-                    <input id = "event_end_time" name="event_end_time" type="time">
+                    <input id = "event_end_time" name="event_end_time" type="time" required>
                 </div>  
             </div>
             <div>
                 <label for="event_location">Event Location:</label>
-                <textarea id="event_location" name="event_location" placeholder="Location"></textarea>
+                <textarea id="event_location" name="event_location" placeholder="Location" required></textarea>
             </div>
             <div>
                 <label for="organization_name">Organization Name:</label>
-                <textarea id="organization_name" name="organization_name" placeholder="Organization Name"></textarea>
+                <textarea id="organization_name" name="organization_name" placeholder="Organization Name" required></textarea>
             </div>
             
             <button type="submit" class="secondary-button" style="max-width:max-content; align-self:center">Create</button>
