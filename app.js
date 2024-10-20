@@ -132,6 +132,7 @@ app.post('/edit/:id', async (req, res) => {
     }
 });
 
+/*
 app.post('/create_job/:id', async (req, res) => {
     try{
         const eventID = req.params.id;
@@ -155,6 +156,46 @@ app.post('/create_job/:id', async (req, res) => {
         res.status(500).send('Error creating new job')
     }
 })
+*/
+
+app.post('/create_job/:id', async (req, res) => {
+    const { job_title, job_description, assigned_staff_member } = req.body;
+    const eventID = req.params.id;
+
+    // Validate input fields
+    if (!job_title || !job_description || !assigned_staff_member) {
+        // Render the job positions page again with an error message
+        const event = await Event.findById(eventID);
+        return res.render('job_positions', { 
+            job_positions: event.job_positions, 
+            event, 
+            errorMessage: 'All fields are required to create a job position.' 
+        });
+    }
+
+    try {
+        const newJob = new EventJob({
+            job_title,
+            job_description,
+            assigned_staff_member
+        });
+
+        await newJob.save();
+
+        await Event.findByIdAndUpdate(
+            eventID,
+            { $push: { job_positions: newJob } },
+        );
+
+        console.log('Job added to database successfully:', newJob);
+        // Stay on the job positions page after job creation
+        const updatedEvent = await Event.findById(eventID);
+        res.render('job_positions', { job_positions: updatedEvent.job_positions, event: updatedEvent });
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Error creating new job');
+    }
+});
 
 
 app.get('/edit/:id', async (req, res) => {
@@ -194,6 +235,27 @@ app.post('/delete_job/:eventId/:jobId', async (req, res) => {
     }
 });
 
+app.post('/create', (req, res) => {
+    let { event_start_date, event_end_date } = req.body;
+    
+    // Ensure dates are parsed correctly
+    event_start_date = new Date(event_start_date);
+    event_end_date = new Date(event_end_date);
+
+    // Save event with correct date format
+    Event.create({
+        ...req.body, 
+        event_start_date: event_start_date,
+        event_end_date: event_end_date
+    }, (err, newEvent) => {
+        if (err) {
+            console.log(err);
+            res.redirect('/create_event');
+        } else {
+            res.redirect('/');
+        }
+    });
+});
 
 
 // Prints out when server is running
