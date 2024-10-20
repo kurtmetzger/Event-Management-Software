@@ -257,4 +257,33 @@ button:hover {
     background-color: gray;
     color: white;
   }
-  
+
+
+
+/* CSS for event-edit page: 
+*/
+.event-edit-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-row {
+    display: flex;
+    gap: 15px;
+}
+
+.form-group {
+    flex-grow: 1;
+}
+
+.search-box {
+    max-width: 50%;
+}
+
+textarea, input {
+    width: 100%;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
