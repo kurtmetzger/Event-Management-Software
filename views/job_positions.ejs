@@ -49,13 +49,13 @@
             <form action="/create_job/<%= event._id%>" method="POST">
                 <tr>
                     <td>
-                        <textarea id="job_title" name="job_title" placeholder="New Job Title" style="width: 90%"></textarea>
+                        <textarea id="job_title" name="job_title" placeholder="New Job Title" style="width: 90%" required></textarea>
                     </td>
                     <td>
-                        <textarea id="job_description" name="job_description" placeholder="New Job Description" style="width: 90%"></textarea>
+                        <textarea id="job_description" name="job_description" placeholder="New Job Description" style="width: 90%" required></textarea>
                     </td>
                     <td>
-                        <textarea id="assigned_staff_member" name="assigned_staff_member" placeholder="New Job Assigned Staff Member" style="width: 90%"></textarea>
+                        <textarea id="assigned_staff_member" name="assigned_staff_member" placeholder="New Job Assigned Staff Member" style="width: 90%" required></textarea>
                     </td>
                     <td>
                         <button type="submit">Create New Job</button>
