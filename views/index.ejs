@@ -39,7 +39,7 @@
             <% eventsList.forEach(event => { %>
                 <tr>
                     <td><%= event.event_name %></td>
-                    <td><%= new Date(event.event_start_date).toLocaleDateString() %></td>
+                    <td><%= new Date(event.event_start_date).toISOString().split('T')[0] %></td>
                     <td><%= event.event_start_time %></td>
                     <td><%= event.event_location %></td>
                     <td>
