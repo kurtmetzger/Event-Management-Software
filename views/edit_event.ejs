@@ -14,16 +14,16 @@
         <a href="/" style="text-decoration: none; color: #ffffff !important;">
             <h1>Event Management Software</h1>
         </a>
-        <!--div class="search-box" style="max-width: 50%;">
+        <div class="search-box">
             <input type="search" id="search" placeholder="Search">
-        </div-->
+        </div>
     </div>
 
     <div class="body-content">
         <h2 style="text-align: center;">Edit Event</h2>
 
         <!-- Edit event form -->
-        <form action="/edit/<%= event._id %>" method="POST" class="event-edit-form">
+        <form id="editEventForm" action="/edit/<%= event._id %>" method="POST" class="event-edit-form">
             <div>
                 <label for="event_name">Event Name:</label>
                 <textarea id="event_name" name="event_name" placeholder="Event Name" required><%= event.event_name %></textarea>
@@ -54,56 +54,91 @@
             </div>
             <div>
                 <label for="organization_name">Organization Name:</label>
-                <textarea id="organization_name" name="organization_name" placeholder="Organization Name" required><%= event.event_organization_name %></textarea>
+                <textarea id="organization_name" name="organization_name" placeholder="Organization Name" required><%= event.organization_name %></textarea>
             </div>
 
-            <button type="submit" class="secondary-button" style="max-width: max-content; align-self: center;">Update Event</button>
-            <a href="/" style="align-self:center;"><button class="secondary-button" style="max-width:max-content;">Cancel</button></a>
+            <!-- Update Event Button with Confirmation -->
+            <button type="button" class="secondary-button" id="confirmUpdateBtn" style="max-width: max-content; align-self: center;">Update Event</button>
+
+            <!-- Cancel Button -->
+            <button type="button" class="secondary-button" id="cancelBtn" style="max-width: max-content; align-self: center; margin-left: 20px;">Cancel</button>
         </form>
     </div>
 
-    <!-- Cancel Confirmation Modal -->
-    <div id="cancelModal" class="modal">
+    <!-- Confirmation Pop-Ups -->
+    <div id="updateModal" class="modal">
         <div class="modal-content">
-          <span class="close">&times;</span>
-          <h2>Are you sure you want to cancel? Any unsaved changes will be lost</h2>
-          <button id="confirmCancelButton" class="btn btn-danger">Yes</button>
-          <button id="denyCancelButton" class="btn btn-secondary">No</button>
-        </div>
-      </div>
-
-    <!-- Footer -->
-    <div class="footer">
-        <div style="display: flex; flex-grow: 1;">
-            <!-- Add your footer content -->
+            <h2>Are you sure you want to update this event?</h2>
+            <button id="confirmUpdateButton" class="btn btn-primary">Yes</button>
+            <button id="cancelUpdateButton" class="btn btn-secondary">No</button>
         </div>
     </div>
 
+    <div id="cancelModal" class="modal">
+        <div class="modal-content">
+            <h2>Are you sure you want to cancel?</h2>
+            <button id="confirmCancelButton" class="btn btn-danger">Yes</button>
+            <button id="cancelCancelButton" class="btn btn-secondary">No</button>
+        </div>
+    </div>
 
-    <!-- JavaScript for modal handling -->
+    <!-- Footer -->
+    <div class="footer">
+        <!-- Add your footer content -->
+    </div>
+
     <script>
-        var cancelModal = document.getElementById("cancelModal");
-        var confirmCancelButton = document.getElementById("confirmCancelButton");
-        var denyCancelButton = document.getElementById("denyCancelButton");
-        var closeCancelModal = document.getElementsByClassName("close")[0];
+        // Get modal elements
+        const updateModal = document.getElementById('updateModal');
+        const cancelModal = document.getElementById('cancelModal');
 
-        function confirmCancel() {
-            cancelModal.style.display = "block";
-        }
+        // Get form element
+        const editEventForm = document.getElementById('editEventForm');
 
-        denyCancelButton.onclick = closeCancelModal.onclick = function() {
-            cancelModal.style.display = "none";
-        }
+        // Get buttons
+        const confirmUpdateBtn = document.getElementById('confirmUpdateBtn');
+        const confirmCancelButton = document.getElementById('confirmCancelButton');
+        const cancelBtn = document.getElementById('cancelBtn');
 
+        // Show Update Modal
+        confirmUpdateBtn.onclick = function() {
+            updateModal.style.display = 'block';
+        };
+
+        // Confirm Update Event
+        document.getElementById('confirmUpdateButton').onclick = function() {
+            editEventForm.submit();
+        };
+
+        // Cancel Update Modal
+        document.getElementById('cancelUpdateButton').onclick = function() {
+            updateModal.style.display = 'none';
+        };
+
+        // Show Cancel Modal
+        cancelBtn.onclick = function() {
+            cancelModal.style.display = 'block';
+        };
+
+        // Confirm Cancel and Redirect to Index Page
         confirmCancelButton.onclick = function() {
-            location.href = "/"
-        }
+            window.location.href = '/';
+        };
 
+        // Cancel Cancel Modal
+        document.getElementById('cancelCancelButton').onclick = function() {
+            cancelModal.style.display = 'none';
+        };
+
+        // Hide modals when clicking outside
         window.onclick = function(event) {
-            if (event.target == cancelModal) {
-                cancelModal.style.display = "none";
+            if (event.target === updateModal) {
+                updateModal.style.display = 'none';
             }
-        }
+            if (event.target === cancelModal) {
+                cancelModal.style.display = 'none';
+            }
+        };
     </script>
 
 </body>
