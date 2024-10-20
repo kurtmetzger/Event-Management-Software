@@ -12,9 +12,9 @@
 <body>
     <div class="header">
         <a href="/" style="text-decoration: none; color: #ffffff !important;"><h1 >Event Management Software</h1></a>
-        <div style="max-width: 50%;">
+        <!--div class="search-box" style="max-width: 50%;">
             <input type="search" id="search" placeholder="Search">
-        </div>
+        </div-->
     </div>
     <div class="body-content">
         <h2 style="text-align: center;">Create Event</h2>
@@ -25,22 +25,22 @@
                 <label for="event_name">Event Name:</label>
                 <textarea id="event_name" name="event_name" placeholder="Event Name" required></textarea>
             </div>
-            <div style="display: flex; flex-direction:row;">
-                <div style="display: flex; flex-direction:row; flex-grow: 1;">
+            <div class="form-row">
+                <div class="form-group">
                     <label for="event_start_date">Event Start Date:</label>
                     <input id = "event_start_date" name="event_start_date" type="date" required>
                 </div>
-                <div style="display: flex; flex-direction:row; flex-grow: 1;">
+                <div class="form-group">
                     <label for="event_end_date">Event End Date:</label>
                     <input id = "event_end_date" name="event_end_date" type="date" required>
                 </div>
             </div>
-            <div style="display: flex; flex-direction:row;">
-                <div style="display: flex; flex-direction:row; flex-grow: 1;">
+            <div class="form-row">
+                <div class="form-group">
                     <label for = "event_start_time">Event Start Time:</label>
                     <input id = "event_start_time"  name="event_start_time" type="time" required>
                 </div>
-                <div style="display: flex; flex-direction:row; flex-grow: 1;">
+                <div class="form-group">
                     <label for = "event_end_time">Event End Time:</label>
                     <input id = "event_end_time" name="event_end_time" type="time" required>
                 </div>  
@@ -55,12 +55,56 @@
             </div>
             
             <button type="submit" class="secondary-button" style="max-width:max-content; align-self:center">Create</button>
+            <!-- Cancel Button -->
+            <button type="button" class="secondary-button" id="cancelBtn" style="max-width: max-content; align-self: center;">Cancel</button>
         </form>
     </div>
 
 
+    <div id="cancelModal" class="modal">
+        <div class="modal-content">
+            <h2>Are you sure you want to cancel?</h2>
+            <button id="confirmCancelButton" class="btn btn-danger">Yes</button>
+            <button id="cancelCancelButton" class="btn btn-secondary">No</button>
+        </div>
+    </div>
+
+
+    <script>
+        // Get modal elements
+        const cancelModal = document.getElementById('cancelModal');
+
+        // Get buttons
+        const confirmCancelButton = document.getElementById('confirmCancelButton');
+        const cancelBtn = document.getElementById('cancelBtn');
+
+        // Show Cancel Modal
+        cancelBtn.onclick = function() {
+            cancelModal.style.display = 'block';
+        };
+
+        // Confirm Cancel and Redirect to Index Page
+        confirmCancelButton.onclick = function() {
+            window.location.href = '/';
+        };
+
+        // Cancel Cancel Modal
+        document.getElementById('cancelCancelButton').onclick = function() {
+            cancelModal.style.display = 'none';
+        };
+
+        // Hide modals when clicking outside
+        window.onclick = function(event) {
+            if (event.target === cancelModal) {
+                cancelModal.style.display = 'none';
+            }
+        };
+    </script>
+
+
     <!--Footer-->
     <div class="footer">
+        <!--
         <div style="display: flex; flex-grow: 1">
             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16" style="margin: 8px;">
                 <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"/>
@@ -87,6 +131,7 @@
                 </ul>
             </div>
         </div>
+    -->
     </div>
 </body>
 </html>
